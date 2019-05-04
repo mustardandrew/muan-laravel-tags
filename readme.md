@@ -1,4 +1,6 @@
-# Maun Laravel Comments package
+# Maun Laravel Tags package
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/ea5d752194dbda8ff1ac/maintainability)](https://codeclimate.com/github/mustardandrew/muan-laravel-tags/maintainability)
 
 Used for create tags.
 

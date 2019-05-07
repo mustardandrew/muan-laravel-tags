@@ -44,30 +44,51 @@ class Post extends Model
 }
 ```
 
-## Usage (example)
+## Usage (examples)
 
+### Create & attach single tag
 ```php
-
 // Create tag
 $tag = Muan\Tags\Model\Tag::create([
     'title' => $title = 'Laravel',
     'slug' => str_slug($title)
 ]);
 
-// Sync tag
+// Attach tag
+$post = App\Post::find(1);
+$post->tags()->attach($tag->id);
+```
+### Create & attach multiple tags
+```php
+$tags = ['Laravel', 'Eloquent', 'Tags'];
+
+foreach ($tags as $index => $tag) {
+    $preparedTag = [
+        'title' => $tag,
+        'slug' => str_slug($tag)
+    ];
+
+    $tagId = Muan\Tags\Model\Tag::create($prepareTag)->id;
+    $tags[$index] = $tagId;
+}
+
 $post = App\Post::find($id = 1);
-$post->tags()->sync([$tag->id]);
+$post->tags()->sync($tags);
+```
 
-// Get tags
-$tags = $post->tags;
+### Get tags
 
+```php
+$tags = App\Post::find(1)->tags;
 ```
 
 ### Commands
 
 Create new tag
 ```bash
-php artisan tag:create "new tag"
+// Slug is generated automatically using str_slug()
+
+php artisan tag:create "tag title"
 ```
 
 ## License
